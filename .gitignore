@@ -1,3 +1,22 @@
-sportorezka.mwb.bak
-vcs.xml
 .idea/
+vcs.xml
+
+.gitignore
+node_modules
+
+.nyc_output
+.vscode
+.directory
+coverage
+dist
+logs
+*.mwb.bak
+
+package-lock.json
+yarn-error.log
+
+# Ignore Mac DS_Store files
+.DS_Store
+
+# Keep .gitkeep files
+!/**/.gitkeep

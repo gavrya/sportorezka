@@ -4,7 +4,7 @@ sportorezka database design made in MySQL Workbench https://dev.mysql.com/downlo
 Skill levels:
 - ANY
 - BEGINNER
-- GOOD
+- AMATEUR
 - AVDANCED
 
 Event statuses:
