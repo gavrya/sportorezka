@@ -12,7 +12,7 @@ dist
 logs
 *.mwb.bak
 
-.docker/*
+.docker/mysql_data/*
 
 package-lock.json
 yarn-error.log

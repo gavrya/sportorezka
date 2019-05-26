@@ -11,4 +11,4 @@ router.all(config.graphqlUrl, graphqlServer);
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-app.listen(config.serverPort);
+app.listen(config.port);
