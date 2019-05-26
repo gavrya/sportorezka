@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+  mariadb:
+    image: 'bitnami/mariadb:latest'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - .docker/mariadb_data:/bitnami
+  phpmyadmin:
+    image: 'bitnami/phpmyadmin:latest'
+    depends_on:
+      - mariadb
+    ports:
+      - '8080:80'
+      - '4040:443'
+    volumes:
+      - .docker/phpmyadmin_data:/bitnami

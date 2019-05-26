@@ -12,6 +12,8 @@ dist
 logs
 *.mwb.bak
 
+.docker/*
+
 package-lock.json
 yarn-error.log
 

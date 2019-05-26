@@ -7,7 +7,9 @@
   "license": "MIT",
   "scripts": {
     "dev:server": "nodemon ./server",
-    "test:lint-server": "eslint . --ext .js"
+    "test:lint-server": "eslint . --ext .js",
+    "docker:mysql-start": "docker-compose up -d",
+    "docker:mysql-stop": "docker-compose down"
   },
   "dependencies": {
     "config": "^3.1.0",
