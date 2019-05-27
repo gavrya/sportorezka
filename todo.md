@@ -1,10 +1,9 @@
 TODO:
-- add custom error to graphql (https://medium.com/@estrada9166/return-custom-errors-with-status-code-on-graphql-45fca360852)
 - passport auth? 
 - JWT token in header + modify graphiql?
 - auth, save currentUser to context in graphql context.
 - add cors headers middleware (allow from all?)
-- attach bookshelf to the koa ctx?
+- attach knex and bookshelf to the koa|graphql ctx?
 
 Фичи:
 Возможность создать событие без локейшена.

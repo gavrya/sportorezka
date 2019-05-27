@@ -8,8 +8,8 @@
   "scripts": {
     "dev:server": "cross-env NODE_ENV=development nodemon ./server",
     "test:lint-server": "eslint . --ext .js",
-    "docker:mysql-start": "docker-compose up",
-    "docker:mysql-stop": "docker-compose down",
+    "docker:start": "docker-compose up",
+    "docker:stop": "docker-compose down",
     "db:migrate": "cross-env NODE_ENV=development knex migrate:latest --verbose",
     "db:rollback": "cross-env NODE_ENV=development knex migrate:rollback --verbose",
     "db:migration": "cross-env NODE_ENV=development knex migrate:make `read name && echo $name`"
