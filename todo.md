@@ -1,9 +1,12 @@
 TODO:
 - passport auth? 
-- JWT token in header + modify graphiql?
 - auth, save currentUser to context in graphql context.
-- add cors headers middleware (allow from all?)
-- attach knex and bookshelf to the koa|graphql ctx?
+- add mocha, chai, istanbul
+- run tests on prepush, husky
+
+// use middleware only with given path
+// this will add currentUser obj to the ctx
+router.use('/users', userAuth());
 
 Фичи:
 Возможность создать событие без локейшена.
