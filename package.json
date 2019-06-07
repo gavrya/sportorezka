@@ -7,12 +7,18 @@
   "license": "MIT",
   "scripts": {
     "dev:server": "cross-env NODE_ENV=development PORT=3000 nodemon ./bin/www",
+    "test": "npm run test:lint-server",
     "test:lint-server": "eslint . --ext .js",
     "docker:start": "docker-compose up",
     "docker:stop": "docker-compose down",
     "db:migrate": "cross-env NODE_ENV=development knex migrate:latest --verbose",
     "db:rollback": "cross-env NODE_ENV=development knex migrate:rollback --verbose",
     "db:migration": "cross-env NODE_ENV=development knex migrate:make `read name && echo $name`"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm t"
+    }
   },
   "dependencies": {
     "bookshelf": "^0.14.2",
@@ -33,6 +39,7 @@
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
-    "eslint-plugin-security": "^1.4.0"
+    "eslint-plugin-security": "^1.4.0",
+    "husky": "^2.4.0"
   }
 }
