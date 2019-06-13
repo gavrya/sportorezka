@@ -1,3 +1,9 @@
 {
-  "port": "PORT"
+  "port": "PORT",
+  "facebook": {
+    "appId": "FACEBOOK_APP_ID",
+    "appSecret": "FACEBOOK_APP_SECRET",
+    "callbackUrl": "FACEBOOK_CALLBACK_URL",
+    "apiVersion": "FACEBOOK_API_VERSION"
+  }
 }

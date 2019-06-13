@@ -3,10 +3,12 @@ const Router = require('koa-router');
 const helmet = require('koa-helmet');
 const config = require('config');
 const { graphiqlServer, graphqlServer } = require('./graphql/server');
+const facebookTokenResolver = require('./routes/facebookTokenResolver');
 
 const app = new Koa();
 const router = new Router();
 
+router.get('/facebook', facebookTokenResolver);
 router.get(config.graphqlUrl, graphiqlServer);
 router.post(config.graphqlUrl, graphqlServer);
 
