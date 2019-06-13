@@ -1,4 +1,8 @@
 const bookshelf = require('bookshelf');
 const knex = require('./knex');
 
-module.exports = bookshelf(knex);
+const bookshelfInstance = bookshelf(knex);
+
+bookshelfInstance.plugin('bookshelf-camelcase');
+
+module.exports = bookshelfInstance;
