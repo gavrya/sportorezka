@@ -1,13 +1,13 @@
 const errors = {
-  INTERNAL_SERVER_ERROR: {
+  InternalServerError: {
     type: 'INTERNAL_SERVER_ERROR',
     message: 'Internal server error',
   },
-  BAD_REQUEST: {
+  BadRequest: {
     type: 'BAD_REQUEST',
     message: 'Bad request',
   },
-  UNAUTHORIZED: {
+  Unauthorized: {
     type: 'UNAUTHORIZED',
     message: 'Unauthorized request',
   },

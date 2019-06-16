@@ -5,5 +5,9 @@
     "appSecret": "FACEBOOK_APP_SECRET",
     "callbackUrl": "FACEBOOK_CALLBACK_URL",
     "apiVersion": "FACEBOOK_API_VERSION"
+  },
+  "jwt" : {
+    "secret": "JWT_SECRET",
+    "expiresDays": "JWT_EXPIRES_DAYS"
   }
 }

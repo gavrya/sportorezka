@@ -2,6 +2,7 @@ const graphqlHTTP = require('koa-graphql');
 const send = require('koa-send');
 const schema = require('../schema');
 const formatError = require('../errors/formatError');
+const { verifyJwtToken } = require('../../services/jwt');
 
 const getJwtToken = (ctx) => {
   const authHeader = ctx.request.headers.authorization;
@@ -10,13 +11,43 @@ const getJwtToken = (ctx) => {
   return jwtToken;
 };
 
+const getAuthUser = (jwtToken) => {
+  if (!jwtToken) {
+    return null;
+  }
+
+  try {
+    const vefiried = verifyJwtToken(jwtToken);
+
+    const authUser = {
+      id: vefiried.sub,
+    };
+
+    return authUser;
+  } catch (e) {
+    return null;
+  }
+};
+
+const getContext = (ctx) => {
+  const jwtToken = getJwtToken(ctx);
+  const authUser = getAuthUser(jwtToken);
+
+  const context = {
+    ...ctx,
+    authUser,
+  };
+
+  return context;
+};
+
 const graphqlServer = (ctx, next) => {
-  console.log(getJwtToken(ctx));
+  const context = getContext(ctx);
 
   return graphqlHTTP({
     schema,
     formatError,
-    context: ctx,
+    context,
   })(ctx, next);
 };
 

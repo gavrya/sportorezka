@@ -7,12 +7,17 @@
     "database": "sportorezka_db",
     "charset": "utf8",
     "user": "db_user",
-    "password": "db_password"
+    "password": "db_password",
+    "debug": false
   },
   "facebook": {
     "appId": "2049577515152232",
     "appSecret": "a738707dac4a3b2eafb1f291a98aa92e",
     "callbackUrl": "http://localhost:3000/auth/facebook/callback",
     "apiVersion": "v3.3"
+  },
+  "jwt" : {
+    "secret": "743677397A24432646294A404E635266546A576E5A7234753778214125442A47",
+    "expiresDays": 90
   }
 }
