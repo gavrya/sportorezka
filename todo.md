@@ -1,14 +1,8 @@
 TODO:
-- passport auth? 
-- auth, save currentUser to context in graphql context.
 - add mocha, chai, istanbul
 - run tests on prepush, husky
-- docker container
-- CI/CD
-
-// use middleware only with given path
-// this will add currentUser obj to the ctx
-router.use('/users', userAuth());
+- nodejs docker container
+- CI/CD (jenkins, travis, circleci)
 
 Фичи:
 Возможность создать событие без локейшена.
