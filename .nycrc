@@ -1,0 +1,21 @@
+{
+  "extension": [".js"],
+  "exclude": [
+    "node_modules",
+    "coverage",
+    "test"
+  ],
+  "check-coverage": true,
+  "per-file": false,
+  "statements": 0,
+  "branches": 0,
+  "functions": 0,
+  "lines": 0,
+  "reporter": [
+    "lcov",
+    "text",
+    "text-summary",
+    "html"
+  ],
+  "all": true
+}
