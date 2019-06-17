@@ -17,6 +17,6 @@
   },
   "jwt" : {
     "secret": "",
-    "expiresDays": 90
+    "expiresInDays": 90
   }
 }

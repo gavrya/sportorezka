@@ -1,15 +1,12 @@
 const { getUserById } = require('../../../services/user');
-const { Unauthorized } = require('../../../graphql/errors');
-const ServerError = require('../../../graphql/errors/serverError');
+const checkAuthJwt = require('../../../services/authJwt');
 
 const userResolver = async (parent, args, ctx) => {
-  const { authUser } = ctx;
+  const { authJwt } = ctx;
 
-  if (!authUser) {
-    throw new ServerError(Unauthorized);
-  }
+  checkAuthJwt(authJwt);
 
-  const user = await getUserById(authUser.id);
+  const user = await getUserById(authJwt.payload.userId);
 
   return user.toJSON();
 };

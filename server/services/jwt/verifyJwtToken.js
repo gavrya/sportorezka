@@ -4,13 +4,25 @@ const jwt = require('jsonwebtoken');
 const verifyJwtToken = (jwtToken) => {
   const { secret } = config.jwt;
 
-  const decoded = jwt.verify(jwtToken, secret);
+  let isValid = true;
+  let isExpired = false;
+  let payload = null;
 
-  if (decoded.exp <= Date.now()) {
-    throw new Error('JWT token expires');
+  try {
+    payload = jwt.verify(jwtToken, secret);
+  } catch (e) {
+    if (e instanceof jwt.TokenExpiredError) {
+      isExpired = true;
+    } else {
+      isValid = false;
+    }
   }
 
-  return decoded;
+  return {
+    isValid,
+    isExpired,
+    payload,
+  };
 };
 
 module.exports = verifyJwtToken;

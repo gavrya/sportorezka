@@ -7,6 +7,6 @@
   },
   "jwt" : {
     "secret": "JWT_SECRET",
-    "expiresDays": "JWT_EXPIRES_DAYS"
+    "expiresInDays": "JWT_EXPIRES_IN_DAYS"
   }
 }

@@ -29,15 +29,15 @@ const loginResolver = async (parent, args) => {
   ] = facebookData;
 
   if (facebookAccessTokenInfo.errors.length > 0) {
-    throw new ServerError(BadRequest, 'Facebook access token info errors', facebookAccessTokenInfo.errors);
+    throw new ServerError(BadRequest, 'Facebook access token info error', facebookAccessTokenInfo.errors);
   }
 
   if (facebookUser.errors.length > 0) {
-    throw new ServerError(BadRequest, 'Facebook user errors', facebookUser.errors);
+    throw new ServerError(BadRequest, 'Facebook user error', facebookUser.errors);
   }
 
   if (facebookLongLivedToken.errors.length > 0) {
-    throw new ServerError(BadRequest, 'Facebook long lived token errors', facebookLongLivedToken.errors);
+    throw new ServerError(BadRequest, 'Facebook long lived token error', facebookLongLivedToken.errors);
   }
 
   const userInfo = {
@@ -50,7 +50,11 @@ const loginResolver = async (parent, args) => {
 
   const loggedUser = await loginUser(userInfo);
 
-  const jwtToken = createJwtToken(loggedUser.get('id'));
+  const payload = {
+    userId: loggedUser.get('id'),
+  };
+
+  const jwtToken = createJwtToken(payload);
 
   return {
     jwtToken,

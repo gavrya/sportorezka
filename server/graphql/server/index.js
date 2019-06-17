@@ -11,31 +11,23 @@ const getJwtToken = (ctx) => {
   return jwtToken;
 };
 
-const getAuthUser = (jwtToken) => {
+const getAuthJwt = (jwtToken) => {
   if (!jwtToken) {
     return null;
   }
 
-  try {
-    const vefiried = verifyJwtToken(jwtToken);
+  const authJwt = verifyJwtToken(jwtToken);
 
-    const authUser = {
-      id: vefiried.sub,
-    };
-
-    return authUser;
-  } catch (e) {
-    return null;
-  }
+  return authJwt;
 };
 
 const getContext = (ctx) => {
   const jwtToken = getJwtToken(ctx);
-  const authUser = getAuthUser(jwtToken);
+  const authJwt = getAuthJwt(jwtToken);
 
   const context = {
     ...ctx,
-    authUser,
+    authJwt,
   };
 
   return context;
