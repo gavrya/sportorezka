@@ -1,7 +1,7 @@
 const { GraphQLObjectType, GraphQLString } = require('graphql');
 
 const MutationType = new GraphQLObjectType({
-  name: 'MutationType',
+  name: 'Mutation',
   fields: {
     hello: {
       type: GraphQLString,

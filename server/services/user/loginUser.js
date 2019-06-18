@@ -35,7 +35,7 @@ const loginUser = async (userInfo) => {
     }).save();
   }
 
-  return loggedUser;
+  return loggedUser.toJSON();
 };
 
 module.exports = loginUser;

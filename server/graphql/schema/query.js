@@ -2,10 +2,11 @@ const { GraphQLObjectType } = require('graphql');
 const queries = require('./queries');
 
 const QueryType = new GraphQLObjectType({
-  name: 'QueryType',
+  name: 'Query',
   fields: {
     login: queries.LoginQuery,
     user: queries.UserQuery,
+    getCategories: queries.CategoriesQuery,
   },
 });
 

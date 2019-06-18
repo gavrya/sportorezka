@@ -51,7 +51,7 @@ const loginResolver = async (parent, args) => {
   const loggedUser = await loginUser(userInfo);
 
   const payload = {
-    userId: loggedUser.get('id'),
+    userId: loggedUser.id,
   };
 
   const jwtToken = createJwtToken(payload);

@@ -5,8 +5,8 @@ const {
 } = require('graphql');
 
 const LoginType = new GraphQLObjectType({
-  name: 'LoginType',
-  description: 'LoginType',
+  name: 'Login',
+  description: 'Login',
   fields: {
     jwtToken: {
       type: new GraphQLNonNull(GraphQLString),

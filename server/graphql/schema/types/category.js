@@ -5,9 +5,9 @@ const {
   GraphQLFloat,
 } = require('graphql');
 
-const UserType = new GraphQLObjectType({
-  name: 'User',
-  description: 'User',
+const CategoryType = new GraphQLObjectType({
+  name: 'Category',
+  description: 'Category',
   fields: {
     id: {
       description: 'Id',
@@ -17,12 +17,8 @@ const UserType = new GraphQLObjectType({
       description: 'Name',
       type: new GraphQLNonNull(GraphQLString),
     },
-    email: {
-      description: 'Email',
-      type: new GraphQLNonNull(GraphQLString),
-    },
-    avatarUrl: {
-      description: 'Avatar url',
+    description: {
+      description: 'Description',
       type: new GraphQLNonNull(GraphQLString),
     },
     createDate: {
@@ -36,4 +32,4 @@ const UserType = new GraphQLObjectType({
   },
 });
 
-module.exports = UserType;
+module.exports = CategoryType;

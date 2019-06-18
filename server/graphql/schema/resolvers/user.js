@@ -8,7 +8,7 @@ const userResolver = async (parent, args, ctx) => {
 
   const user = await getUserById(authJwt.payload.userId);
 
-  return user.toJSON();
+  return user;
 };
 
 module.exports = userResolver;
