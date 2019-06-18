@@ -25,10 +25,6 @@ const UserType = new GraphQLObjectType({
       description: 'Avatar url',
       type: new GraphQLNonNull(GraphQLString),
     },
-    phoneNumber: {
-      description: 'Phone number',
-      type: GraphQLString,
-    },
     createDate: {
       description: 'Unix timestamp in milliseconds',
       type: new GraphQLNonNull(GraphQLFloat),

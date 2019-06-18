@@ -7,9 +7,8 @@ exports.up = function (knex) {
     table.string('name').notNullable();
     table.string('email').notNullable();
     table.text('avatarUrl').notNullable();
-    table.string('phoneNumber');
-    table.bigInteger('createDate').notNullable().unsigned();
-    table.bigInteger('updateDate').notNullable().unsigned();
+    table.bigInteger('createDate').unsigned().notNullable();
+    table.bigInteger('updateDate').unsigned().notNullable();
   });
 };
 
