@@ -5,7 +5,7 @@ exports.up = function (knex) {
     table.string('facebookId').notNullable().unique();
     table.text('facebookToken').notNullable();
     table.string('name').notNullable();
-    table.string('email').notNullable();
+    table.string('email').notNullable().unique();
     table.text('avatarUrl').notNullable();
     table.bigInteger('createDate').unsigned().notNullable();
     table.bigInteger('updateDate').unsigned().notNullable();
