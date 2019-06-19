@@ -3,6 +3,8 @@ TODO:
 - run tests on prepush, husky
 - nodejs docker container
 - CI/CD (jenkins, travis, circleci)
+- delete desc from categories
+- add lang to cats
 
 Фичи:
 Возможность создать событие без локейшена.

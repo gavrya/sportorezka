@@ -70,7 +70,7 @@ const Event = bookshelf.Model.extend({
     return this.belongsTo(EventStatus, 'eventStatusId');
   },
   skillLevel() {
-    return this.belongsTo(SkillLevel), 'skillLevelId';
+    return this.belongsTo(SkillLevel, 'skillLevelId');
   },
   participants() {
     return this.hasMany(Participant, 'participantId');

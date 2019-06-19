@@ -7,6 +7,7 @@ const QueryType = new GraphQLObjectType({
     login: queries.LoginQuery,
     user: queries.UserQuery,
     getCategories: queries.CategoriesQuery,
+    getLocations: queries.LocationsQuery,
   },
 });
 
