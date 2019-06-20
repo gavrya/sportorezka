@@ -1,6 +1,4 @@
 TODO:
-- add mocha, chai, istanbul
-- run tests on prepush, husky
 - nodejs docker container
 - CI/CD (jenkins, travis, circleci)
 - delete desc from categories

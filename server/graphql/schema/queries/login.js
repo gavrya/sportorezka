@@ -8,7 +8,7 @@ const { loginResolver } = require('../resolvers');
 
 const LoginQuery = {
   type: LoginType,
-  description: 'Returns application JWT token by provided facebook access token',
+  description: 'Get application JWT token by provided facebook access token',
   args: {
     accessToken: {
       type: new GraphQLNonNull(GraphQLString),

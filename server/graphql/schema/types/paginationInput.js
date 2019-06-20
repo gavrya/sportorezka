@@ -12,7 +12,7 @@ const PaginationInputType = new GraphQLInputObjectType({
       type: GraphQLFloat,
     },
     pageSize: {
-      description: 'Number of records per page. Default: 100. Maximum: 10000.',
+      description: 'Number of records per page. Default: 100. Minimum: 1. Maximum: 1000.',
       type: GraphQLFloat,
     },
   },

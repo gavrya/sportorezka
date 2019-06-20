@@ -19,8 +19,8 @@ const LocationsType = new GraphQLObjectType({
       description: 'The requested page size',
       type: new GraphQLNonNull(GraphQLFloat),
     },
-    results: {
-      description: 'Results',
+    items: {
+      description: 'Found items',
       type: new GraphQLList(LocationType),
     },
   },

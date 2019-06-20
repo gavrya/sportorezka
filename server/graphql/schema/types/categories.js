@@ -9,8 +9,8 @@ const CategoriesType = new GraphQLObjectType({
   name: 'Categories',
   description: 'Categories',
   fields: {
-    results: {
-      description: 'Results',
+    items: {
+      description: 'Found items',
       type: new GraphQLList(CategoryType),
     },
   },

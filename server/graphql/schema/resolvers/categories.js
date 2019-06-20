@@ -3,9 +3,7 @@ const { getCategories } = require('../../../services/category');
 const categoriesResolver = async () => {
   const categories = await getCategories();
 
-  return {
-    results: categories,
-  };
+  return categories;
 };
 
 module.exports = categoriesResolver;

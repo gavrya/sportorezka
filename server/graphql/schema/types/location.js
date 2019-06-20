@@ -46,7 +46,7 @@ const LocationType = new GraphQLObjectType({
       type: new GraphQLNonNull(UserType),
     },
     categories: {
-      description: 'Categories to which this location is belongs to',
+      description: 'Related categories',
       type: new GraphQLList(CategoryType),
     },
   },

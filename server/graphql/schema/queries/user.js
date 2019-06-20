@@ -3,7 +3,7 @@ const { userResolver } = require('../resolvers');
 
 const UserQuery = {
   type: UserType,
-  description: 'Returns currently logged in user information',
+  description: 'Get currently logged in user information',
   resolve: userResolver,
 };
 

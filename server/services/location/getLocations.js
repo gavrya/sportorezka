@@ -1,39 +1,46 @@
-const lodashGet = require('lodash.get');
 const knex = require('../../database/knex');
 const { Location } = require('../../database/models');
 const getRadiusSearchParams = require('../../services/radiusSearch');
 
 const getLocations = async (params) => {
-  const pageParam = Math.max(lodashGet(params, 'pagination.page', 1), 1);
-  const pageSizeParam = Math.min(lodashGet(params, 'pagination.pageSize', 100), 10000);
-  const userIdParam = lodashGet(params, 'userId');
-  const categoryIdsParam = lodashGet(params, 'categoryIds');
-  const limitByUserId = typeof userIdParam === 'number';
-  const limitByCategoryIds = Array.isArray(categoryIdsParam) && categoryIdsParam.length > 0;
+  const {
+    page,
+    pageSize,
+    searchRadius,
+    gpsLat,
+    gpsLng,
+    userId,
+    categoryIds,
+    limitByUserId,
+    limitByCategoryIds,
+    limitBySearchRadius,
+    loadUser,
+    loadCategories,
+  } = params;
 
-  const withRelated = ['user', 'categories'];
+  const withRelated = [];
 
-  const fetchOptions = {
-    withRelated,
-  };
+  if (loadUser) {
+    withRelated.push('user');
+  }
+
+  if (loadCategories) {
+    withRelated.push('categories');
+  }
 
   const makeQuery = () => {
     const locationsQuery = Location.forge();
 
     if (limitByUserId) {
-      locationsQuery.whereHas('user', q => q.where('id', userIdParam));
+      locationsQuery.whereHas('user', q => q.where('id', userId));
     }
 
     if (limitByCategoryIds) {
-      locationsQuery.whereHas('categories', q => q.whereIn('id', categoryIdsParam));
+      locationsQuery.whereHas('categories', q => q.whereIn('id', categoryIds));
     }
 
-    if (params && params.searchRadius) {
-      const searchRadiusParam = Math.min(params.searchRadius.searchRadius, 50);
-      const gpsLatParam = params.searchRadius.gpsLat;
-      const gpsLngParam = params.searchRadius.gpsLng;
-
-      const radiusSearchParams = getRadiusSearchParams('gpsLat', 'gpsLng', gpsLatParam, gpsLngParam, searchRadiusParam);
+    if (limitBySearchRadius) {
+      const radiusSearchParams = getRadiusSearchParams('gpsLat', 'gpsLng', gpsLat, gpsLng, searchRadius);
 
       const {
         lat1, lat2, lng1, lng2, distanceFormula,
@@ -47,23 +54,29 @@ const getLocations = async (params) => {
         .select('locations.*', distanceSelect)
         .whereBetween('locations.gpsLat', [lat1, lat2])
         .andWhereBetween('locations.gpsLng', [lng1, lng2])
-        .having('distance', '<', searchRadiusParam)
-        .orderBy('distance', 'asc')
-        .limit(pageSizeParam)
-        .offset((pageParam - 1) * pageSizeParam));
+        .having('distance', '<', searchRadius)
+        .orderBy('distance', 'ASC')
+        .limit(pageSize)
+        .offset((page - 1) * pageSize));
+    } else {
+      locationsQuery.orderBy('id', 'DESC');
     }
 
     return locationsQuery;
   };
 
+  const fetchOptions = {
+    withRelated,
+  };
+
   const locations = await makeQuery().fetchAll(fetchOptions);
 
-  const results = locations.toJSON();
+  const items = locations.toJSON();
 
   const data = {
-    page: pageParam,
-    pageSize: pageSizeParam,
-    results,
+    page,
+    pageSize,
+    items,
   };
 
   return data;

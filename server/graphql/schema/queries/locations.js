@@ -3,7 +3,7 @@ const { locationsResolver } = require('../resolvers');
 
 const LocationsQuery = {
   type: LocationsType,
-  description: 'Returns locations',
+  description: 'Get locations',
   args: {
     params: {
       description: 'Input params',
