@@ -5,7 +5,7 @@ const { getLocations } = require('../../../services/location');
 const { BadRequest } = require('../../../graphql/errors');
 const ServerError = require('../../../graphql/errors/serverError');
 
-const locationsResolver = async (parent, args, ctx, info) => {
+const getLocationsResolver = async (parent, args, ctx, info) => {
   const page = lodashGet(args, 'params.pagination.page', 1);
   const pageSize = lodashGet(args, 'params.pagination.pageSize', 100);
 
@@ -56,4 +56,4 @@ const locationsResolver = async (parent, args, ctx, info) => {
   return locations;
 };
 
-module.exports = locationsResolver;
+module.exports = getLocationsResolver;

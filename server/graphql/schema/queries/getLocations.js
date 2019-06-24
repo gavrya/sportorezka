@@ -1,7 +1,7 @@
 const { LocationsType, GetLocationsInputType } = require('../types');
-const { locationsResolver } = require('../resolvers');
+const { getLocationsResolver } = require('../resolvers');
 
-const LocationsQuery = {
+const GetLocationsQuery = {
   type: LocationsType,
   description: 'Get locations',
   args: {
@@ -10,7 +10,7 @@ const LocationsQuery = {
       type: GetLocationsInputType,
     },
   },
-  resolve: locationsResolver,
+  resolve: getLocationsResolver,
 };
 
-module.exports = LocationsQuery;
+module.exports = GetLocationsQuery;

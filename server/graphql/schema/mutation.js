@@ -1,14 +1,10 @@
-const { GraphQLObjectType, GraphQLString } = require('graphql');
+const { GraphQLObjectType } = require('graphql');
+const mutations = require('./mutations');
 
 const MutationType = new GraphQLObjectType({
   name: 'Mutation',
   fields: {
-    hello: {
-      type: GraphQLString,
-      resolve() {
-        return 'world';
-      },
-    },
+    createLocation: mutations.createLocationMutation,
   },
 });
 

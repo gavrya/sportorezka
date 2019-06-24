@@ -50,14 +50,14 @@ const getLocations = async (params) => {
         distance: knex.raw(distanceFormula),
       };
 
-      locationsQuery.query(q => q
+      locationsQuery.query()
         .select('locations.*', distanceSelect)
         .whereBetween('locations.gpsLat', [lat1, lat2])
         .andWhereBetween('locations.gpsLng', [lng1, lng2])
         .having('distance', '<', searchRadius)
         .orderBy('distance', 'ASC')
         .limit(pageSize)
-        .offset((page - 1) * pageSize));
+        .offset((page - 1) * pageSize);
     } else {
       locationsQuery.orderBy('id', 'DESC');
     }

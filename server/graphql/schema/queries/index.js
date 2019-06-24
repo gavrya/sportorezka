@@ -1,11 +1,11 @@
 const LoginQuery = require('./login');
 const UserQuery = require('./user');
-const CategoriesQuery = require('./categories');
-const LocationsQuery = require('./locations');
+const GetCategoriesQuery = require('./getCategories');
+const GetLocationsQuery = require('./getLocations');
 
 module.exports = {
   LoginQuery,
   UserQuery,
-  CategoriesQuery,
-  LocationsQuery,
+  GetCategoriesQuery,
+  GetLocationsQuery,
 };
