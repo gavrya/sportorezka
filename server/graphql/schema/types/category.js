@@ -17,10 +17,6 @@ const CategoryType = new GraphQLObjectType({
       description: 'Name',
       type: new GraphQLNonNull(GraphQLString),
     },
-    description: {
-      description: 'Description',
-      type: new GraphQLNonNull(GraphQLString),
-    },
     createDate: {
       description: 'Unix timestamp in milliseconds',
       type: new GraphQLNonNull(GraphQLFloat),

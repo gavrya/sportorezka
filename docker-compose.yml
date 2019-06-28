@@ -2,7 +2,7 @@ version: '2'
 
 services:
   db:
-    image: 'mysql'
+    image: 'mysql:8.0.16'
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_USER=db_user
@@ -14,7 +14,7 @@ services:
       - .docker/mysql_data:/var/lib/mysql
       - .docker/mysql_conf:/etc/mysql/conf.d
   phpmyadmin:
-    image: 'phpmyadmin/phpmyadmin'
+    image: 'phpmyadmin/phpmyadmin:4.9'
     environment:
       - PMA_USER=db_user
       - PMA_PASSWORD=db_password

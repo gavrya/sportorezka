@@ -11,4 +11,4 @@ Event statuses:
 - CREATED
 - STARTED
 - FINISHED
-- CANCELLED
+- CANCELLED (cancelDate)

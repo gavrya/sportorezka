@@ -10,6 +10,7 @@ coverage
 dist
 logs
 *.mwb.bak
+todo.md
 
 .docker/mysql_data/*
 

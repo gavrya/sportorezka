@@ -5,23 +5,22 @@ exports.up = function (knex) {
     table.integer('userId').unsigned().notNullable();
     table.integer('categoryId').unsigned().notNullable();
     table.integer('locationId').unsigned().notNullable();
-    table.integer('eventStatusId').unsigned().notNullable();
-    table.integer('skillLevelId').unsigned().notNullable();
     table.text('description').notNullable();
     table.integer('minParticipants').unsigned();
     table.integer('maxParticipants').unsigned();
     table.integer('minAge').unsigned();
     table.integer('maxAge').unsigned();
-    table.boolean('receptionActive').notNullable().defaultTo(true);
-    table.bigInteger('confirmDate').unsigned();
-    table.bigInteger('startDate').unsigned();
-    table.bigInteger('finishDate').unsigned();
+    table.boolean('isReceptionActive').notNullable().defaultTo(true);
+    table.bigInteger('confirmDate').unsigned().index();
+    table.bigInteger('cancelDate').unsigned().index();
+    table.bigInteger('startDate').unsigned().index();
+    table.bigInteger('finishDate').unsigned().index();
     table.bigInteger('createDate').unsigned().notNullable();
     table.bigInteger('updateDate').unsigned().notNullable();
 
     table.index(['minParticipants', 'maxParticipants']);
     table.index(['minAge', 'maxAge']);
-    table.index(['receptionActive']);
+    table.index(['isReceptionActive']);
 
     table.foreign('userId')
       .references('id')
@@ -38,18 +37,6 @@ exports.up = function (knex) {
     table.foreign('locationId')
       .references('id')
       .inTable('locations')
-      .onDelete('RESTRICT')
-      .onUpdate('CASCADE');
-
-    table.foreign('eventStatusId')
-      .references('id')
-      .inTable('eventStatuses')
-      .onDelete('RESTRICT')
-      .onUpdate('CASCADE');
-
-    table.foreign('skillLevelId')
-      .references('id')
-      .inTable('skillLevels')
       .onDelete('RESTRICT')
       .onUpdate('CASCADE');
   });
