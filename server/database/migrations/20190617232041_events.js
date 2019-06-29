@@ -1,6 +1,8 @@
 
 exports.up = function (knex) {
   return knex.schema.createTable('events', (table) => {
+    table.collate('utf8_unicode_ci');
+
     table.increments();
     table.integer('userId').unsigned().notNullable();
     table.integer('categoryId').unsigned().notNullable();

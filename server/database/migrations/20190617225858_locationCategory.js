@@ -1,6 +1,8 @@
 
 exports.up = function (knex) {
   return knex.schema.createTable('locationCategory', (table) => {
+    table.collate('utf8_unicode_ci');
+
     table.increments();
     table.integer('locationId').unsigned().notNullable();
     table.integer('categoryId').unsigned().notNullable();

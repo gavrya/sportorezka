@@ -9,22 +9,24 @@ const loginUser = async (userInfo) => {
     avatarUrl,
   } = userInfo;
 
-  const user = await User.where({ facebookId }).fetch();
+  const user = await User.query().select('id').findOne({ facebookId });
 
   const timestamp = Date.now();
 
   let loggedUser;
 
   if (user) {
-    loggedUser = await user.save({
+    const userData = {
       facebookToken,
       name,
       email,
       avatarUrl,
       updateDate: timestamp,
-    }, { patch: true });
+    };
+
+    loggedUser = await user.$query().patchAndFetch(userData);
   } else {
-    loggedUser = await User.forge({
+    const userData = {
       facebookId,
       facebookToken,
       name,
@@ -32,10 +34,12 @@ const loginUser = async (userInfo) => {
       avatarUrl,
       createDate: timestamp,
       updateDate: timestamp,
-    }).save();
+    };
+
+    loggedUser = await User.query().insertAndFetch(userData);
   }
 
-  return loggedUser.toJSON();
+  return loggedUser;
 };
 
 module.exports = loginUser;

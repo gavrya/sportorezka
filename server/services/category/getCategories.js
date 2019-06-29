@@ -1,9 +1,7 @@
 const { Category } = require('../../database/models');
 
 const getCategories = async () => {
-  const categories = await Category.forge().fetchAll();
-
-  const items = categories.toJSON();
+  const items = await Category.query();
 
   return {
     items,

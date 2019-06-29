@@ -1,7 +1,9 @@
-const bookshelf = require('../../database/bookshelf');
+const { transaction } = require('objection');
 const { Location, LocationCategory } = require('../../database/models');
 
-const createLocation = (params) => {
+const knex = Location.knex();
+
+const createLocation = async (params) => {
   const {
     userId,
     name,
@@ -15,7 +17,7 @@ const createLocation = (params) => {
 
   const timestamp = Date.now();
 
-  const result = bookshelf.transaction(async (t) => {
+  const result = await transaction(knex, async (trx) => {
     const locationData = {
       userId,
       name,
@@ -26,9 +28,13 @@ const createLocation = (params) => {
       updateDate: timestamp,
     };
 
-    const location = await Location.forge().save(locationData, { transacting: t });
+    const location = await Location.query(trx).insertAndFetch(locationData);
 
-    await categoryIds.map(categoryId => LocationCategory.forge().save({ locationId: location.get('id'), categoryId }, { transacting: t }));
+    const locationId = location.id;
+
+    await Promise.all(
+      categoryIds.map(categoryId => LocationCategory.query(trx).insert({ locationId, categoryId })),
+    );
 
     const relations = [];
 
@@ -41,10 +47,12 @@ const createLocation = (params) => {
     }
 
     if (relations.length > 0) {
-      await location.load(relations, { transacting: t });
+      const relationExpression = `[${relations.join(', ')}]`;
+
+      await location.$loadRelated(relationExpression, null, trx);
     }
 
-    return location.toJSON();
+    return location;
   });
 
   return result;

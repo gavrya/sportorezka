@@ -1,6 +1,8 @@
 
 exports.up = function (knex) {
   return knex.schema.createTable('users', (table) => {
+    table.collate('utf8_unicode_ci');
+
     table.increments();
     table.string('facebookId').notNullable().unique();
     table.text('facebookToken').notNullable();

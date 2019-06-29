@@ -1,4 +1,4 @@
-const knex = require('../../database/knex');
+const { raw } = require('objection');
 const { Location } = require('../../database/models');
 const getRadiusSearchParams = require('../../services/radiusSearch');
 
@@ -29,14 +29,14 @@ const getLocations = async (params) => {
   }
 
   const makeQuery = () => {
-    const locationsQuery = Location.forge();
+    const locationsQuery = Location.query();
 
     if (limitByUserId) {
-      locationsQuery.whereHas('user', q => q.where('id', userId));
+      locationsQuery.whereExists(Location.relatedQuery('user').findById(userId));
     }
 
     if (limitByCategoryIds) {
-      locationsQuery.whereHas('categories', q => q.whereIn('id', categoryIds));
+      locationsQuery.whereExists(Location.relatedQuery('categories').findByIds(categoryIds));
     }
 
     if (limitBySearchRadius) {
@@ -46,12 +46,8 @@ const getLocations = async (params) => {
         lat1, lat2, lng1, lng2, distanceFormula,
       } = radiusSearchParams;
 
-      const distanceSelect = {
-        distance: knex.raw(distanceFormula),
-      };
-
-      locationsQuery.query()
-        .select('locations.*', distanceSelect)
+      locationsQuery
+        .select('locations.*', raw(distanceFormula).as('distance'))
         .whereBetween('locations.gpsLat', [lat1, lat2])
         .andWhereBetween('locations.gpsLng', [lng1, lng2])
         .having('distance', '<', searchRadius)
@@ -62,16 +58,18 @@ const getLocations = async (params) => {
       locationsQuery.orderBy('id', 'DESC');
     }
 
+    if (withRelated.length > 0) {
+      const relationExpression = `[${withRelated.join(', ')}]`;
+
+      locationsQuery.eager(relationExpression);
+    }
+
     return locationsQuery;
   };
 
-  const fetchOptions = {
-    withRelated,
-  };
+  const locations = await makeQuery();
 
-  const locations = await makeQuery().fetchAll(fetchOptions);
-
-  const items = locations.toJSON();
+  const items = locations;
 
   const data = {
     page,
