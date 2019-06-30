@@ -32,11 +32,9 @@ const createLocationResolver = async (parent, args, ctx, info) => {
     throw new ServerError(BadRequest, null, ['Invalid categoryIds param']);
   }
 
-  // todo: check distance between user gps and location gps. Allow max 50 km difference?
-
   const fields = graphqlFields(info);
-  const loadUser = lodashHas(fields, 'user');
-  const loadCategories = lodashHas(fields, 'categories');
+  const withUser = lodashHas(fields, 'user');
+  const withCategories = lodashHas(fields, 'categories');
 
   const params = {
     userId,
@@ -45,8 +43,8 @@ const createLocationResolver = async (parent, args, ctx, info) => {
     gpsLat,
     gpsLng,
     categoryIds,
-    loadUser,
-    loadCategories,
+    withUser,
+    withCategories,
   };
 
   const location = await createLocation(params);

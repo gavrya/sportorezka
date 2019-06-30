@@ -33,8 +33,8 @@ const getLocationsResolver = async (parent, args, ctx, info) => {
   const limitBySearchRadius = typeof searchRadius === 'number' && typeof gpsLat === 'number' && typeof gpsLng === 'number';
 
   const fields = graphqlFields(info);
-  const loadUser = lodashHas(fields, 'items.user');
-  const loadCategories = lodashHas(fields, 'items.categories');
+  const withUser = lodashHas(fields, 'items.user');
+  const withCategories = lodashHas(fields, 'items.categories');
 
   const params = {
     page,
@@ -47,8 +47,8 @@ const getLocationsResolver = async (parent, args, ctx, info) => {
     limitByUserId,
     limitByCategoryIds,
     limitBySearchRadius,
-    loadUser,
-    loadCategories,
+    withUser,
+    withCategories,
   };
 
   const locations = await getLocations(params);

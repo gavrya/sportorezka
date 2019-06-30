@@ -14,8 +14,8 @@ const getLocations = async (params) => {
     limitByUserId,
     limitByCategoryIds,
     limitBySearchRadius,
-    loadUser,
-    loadCategories,
+    withUser,
+    withCategories,
   } = params;
 
   const locations = Location.query();
@@ -40,20 +40,20 @@ const getLocations = async (params) => {
       .whereBetween('locations.gpsLat', [lat1, lat2])
       .andWhereBetween('locations.gpsLng', [lng1, lng2])
       .having('distance', '<', searchRadius)
-      .orderBy('distance', 'asc')
-      .limit(pageSize)
-      .offset((page - 1) * pageSize);
+      .orderBy('distance', 'asc');
   } else {
     locations.orderBy('id', 'desc');
   }
 
+  locations.limit(pageSize).offset((page - 1) * pageSize);
+
   const related = [];
 
-  if (loadUser) {
+  if (withUser) {
     related.push('user');
   }
 
-  if (loadCategories) {
+  if (withCategories) {
     related.push('categories');
   }
 

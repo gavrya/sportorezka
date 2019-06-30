@@ -11,8 +11,8 @@ const createLocation = async (params) => {
     gpsLat,
     gpsLng,
     categoryIds,
-    loadUser,
-    loadCategories,
+    withUser,
+    withCategories,
   } = params;
 
   const timestamp = Date.now();
@@ -38,11 +38,11 @@ const createLocation = async (params) => {
 
     const related = [];
 
-    if (loadUser) {
+    if (withUser) {
       related.push('user');
     }
 
-    if (loadCategories) {
+    if (withCategories) {
       related.push('categories');
     }
 
