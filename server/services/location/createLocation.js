@@ -36,20 +36,20 @@ const createLocation = async (params) => {
       categoryIds.map(categoryId => LocationCategory.query(trx).insert({ locationId, categoryId })),
     );
 
-    const relations = [];
+    const related = [];
 
     if (loadUser) {
-      relations.push('user');
+      related.push('user');
     }
 
     if (loadCategories) {
-      relations.push('categories');
+      related.push('categories');
     }
 
-    if (relations.length > 0) {
-      const relationExpression = `[${relations.join(', ')}]`;
+    if (related.length > 0) {
+      const relations = `[${related.join(', ')}]`;
 
-      await location.$loadRelated(relationExpression, null, trx);
+      await location.$loadRelated(relations, null, trx);
     }
 
     return location;
