@@ -6,7 +6,7 @@ exports.up = function (knex) {
     table.increments();
     table.integer('userId').unsigned().notNullable();
     table.integer('eventId').unsigned().notNullable();
-    table.bigInteger('createDate').unsigned().notNullable();
+    table.bigInteger('joinDate').unsigned().notNullable();
 
     table.unique(['userId', 'eventId']);
 

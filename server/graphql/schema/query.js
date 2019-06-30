@@ -8,6 +8,7 @@ const QueryType = new GraphQLObjectType({
     user: queries.UserQuery,
     getCategories: queries.GetCategoriesQuery,
     getLocations: queries.GetLocationsQuery,
+    getEvent: queries.GetEventQuery,
   },
 });
 

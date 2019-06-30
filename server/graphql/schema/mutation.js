@@ -5,6 +5,7 @@ const MutationType = new GraphQLObjectType({
   name: 'Mutation',
   fields: {
     createLocation: mutations.createLocationMutation,
+    createEvent: mutations.createEventMutation,
   },
 });
 

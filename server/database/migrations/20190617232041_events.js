@@ -15,8 +15,8 @@ exports.up = function (knex) {
     table.boolean('isReceptionActive').notNullable().defaultTo(true);
     table.bigInteger('confirmDate').unsigned().index();
     table.bigInteger('cancelDate').unsigned().index();
-    table.bigInteger('startDate').unsigned().index();
-    table.bigInteger('finishDate').unsigned().index();
+    table.bigInteger('startDate').unsigned().notNullable().index();
+    table.bigInteger('endDate').unsigned().notNullable().index();
     table.bigInteger('createDate').unsigned().notNullable();
     table.bigInteger('updateDate').unsigned().notNullable();
 

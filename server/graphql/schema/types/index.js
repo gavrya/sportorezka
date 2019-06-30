@@ -8,6 +8,8 @@ const PaginationInputType = require('./paginationInput');
 const SearchRadiusInputType = require('./searchRadiusInput');
 const GetLocationsInputType = require('./getLocationsInput');
 const CreateLocationInputType = require('./createLocationInput');
+const EventType = require('./event');
+const CreateEventInputType = require('./createEventInput');
 
 module.exports = {
   LoginType,
@@ -20,4 +22,6 @@ module.exports = {
   SearchRadiusInputType,
   GetLocationsInputType,
   CreateLocationInputType,
+  EventType,
+  CreateEventInputType,
 };
