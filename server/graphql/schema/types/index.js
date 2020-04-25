@@ -10,6 +10,7 @@ const GetLocationsInputType = require('./getLocationsInput');
 const CreateLocationInputType = require('./createLocationInput');
 const EventType = require('./event');
 const CreateEventInputType = require('./createEventInput');
+const UpdateEventInputType = require('./updateEventInput');
 
 module.exports = {
   LoginType,
@@ -24,4 +25,5 @@ module.exports = {
   CreateLocationInputType,
   EventType,
   CreateEventInputType,
+  UpdateEventInputType,
 };

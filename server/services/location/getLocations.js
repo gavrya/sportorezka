@@ -63,7 +63,7 @@ const getLocations = async (params) => {
     locations.eager(relations);
   }
 
-  const items = locations;
+  const items = await locations;
 
   const data = {
     page,

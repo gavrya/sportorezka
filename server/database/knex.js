@@ -6,7 +6,7 @@ const environment = process.env.NODE_ENV;
 
 const knexInstance = knex(knexfile[environment]);
 
-if (process.env.NODE_ENV === 'development') {
+if (environment === 'development') {
   knexInstance.on('query', (query) => {
     console.time(query.__knexQueryUid);
   });
